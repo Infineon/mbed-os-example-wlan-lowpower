@@ -1,0 +1,2 @@
+# mbed-os-example-wlan-lowpower
+This code example demonstrates low power operation of the host MCU and WLAN device. The device connects to a network, starts an HTTP server and enters an extended wait state. The host MCU is in deepsleep/sleep during extended wait state. The WLAN device is in powersave mode (PM1/PM2) during the extended wait, waking up at every DTIM interval for receiving the AP beacon. The host MCU exits sleep/deepsleep when responding to HTTP requests. 
