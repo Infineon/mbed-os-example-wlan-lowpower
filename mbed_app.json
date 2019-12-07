@@ -1,0 +1,28 @@
+{
+    "target_overrides": {
+        "*": {
+            "platform.stdio-convert-newlines": true,
+            "platform.stack-stats-enabled": true,
+            "platform.cpu-stats-enabled": true,
+            "platform.heap-stats-enabled": true,
+            "platform.thread-stats-enabled": true,
+            "platform.sys-stats-enabled": true,
+            "platform.stdio-baud-rate": 115200,
+            "nsapi.default-wifi-security": "WPA_WPA2",
+            "nsapi.default-wifi-ssid": "\"SSID\"",
+            "nsapi.default-wifi-password": "\"Password\""
+        },
+        "CY8CPROTO_062_4343W": {
+            "target.components_remove": ["BSP_DESIGN_MODUS"],
+            "target.macros_add":["USR_LED=CYBSP_USER_LED"]
+        },
+        "CY8CKIT_062S2_43012": {
+            "target.components_remove": ["BSP_DESIGN_MODUS"],
+            "target.macros_add":["USR_LED=CYBSP_USER_LED2"]
+        },
+        "CY8CKIT_062_WIFI_BT": {
+            "target.components_remove": ["BSP_DESIGN_MODUS"],
+            "target.macros_add":["USR_LED=CYBSP_USER_LED"]
+        }
+    }
+}
