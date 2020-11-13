@@ -1,13 +1,11 @@
 /*******************************************************************************
 * File Name: lp_utilities.h
 *
-* Version: 1.0
-*
 * Description: This file includes the macros, enumerations and function
 * prototypes used in lp_utilities.cpp
 *
 ********************************************************************************
-* (c) 2019, Cypress Semiconductor Corporation. All rights reserved.
+* (c) 2019-20, Cypress Semiconductor Corporation. All rights reserved.
 *******************************************************************************
 * This software, including source code, documentation and related materials
 * (“Software”), is owned by Cypress Semiconductor Corporation or one of its
@@ -37,11 +35,18 @@
 * system or application assumes all risk of such use and in doing so agrees to
 * indemnify Cypress against all liability.
 *******************************************************************************/
-#include "HTTP_server.h"
+/*******************************************************************************
+* Include header files
+*******************************************************************************/
+#include "HTTP_server.hpp"
 #include "whd_wifi_api.h"
 #include "whd_types.h"
 #include "WhdSTAInterface.h"
 
+
+/*******************************************************************************
+* Macros
+*******************************************************************************/
 #define APP_INFO( x )           printf("Info:"); printf x
 #define ERR_INFO( x )           printf("Error:"); printf x
 
@@ -89,82 +94,13 @@ enum wlan_powersave_mode_t
     POWERSAVE_DISABLED
 };
 
+
 /*******************************************************************************
-* Function Name: wifi_connect_handler
-********************************************************************************
-*
-* Summary: This function connects the device to a specified AP whose credentials
-* are provided in the mbed_app.json.
-*
-* Parameters:
-* WhdSTAInterface* wifi: This is the pointer to the WLAN interface whose
-* power-save mode is to be configured.
-*
-* Return:
-* cy_rslt_t: It contains the status of operation of connecting to the
-* specified AP.
-*
+* Function prototypes
 *******************************************************************************/
 cy_rslt_t wifi_connect_handler( WhdSTAInterface* wifi );
-
-/*******************************************************************************
-* Function Name: powersave_handler
-********************************************************************************
-*
-* Summary: This function configures a HTTP server page database and starts a
-* HTTP server.
-*
-* Parameters:
-* WhdSTAInterface* wifi: This is the pointer to the WLAN interface whose
-* power-save mode is to be configured.
-*
-* Return:
-* cy_rslt_t: It contains the status of starting a HTTP server.
-*
-*******************************************************************************/
-cy_rslt_t http_server_init( WhdSTAInterface* wifi, HTTPServer* server);
-
-/*******************************************************************************
-* Function Name: dynamic_url_handler
-********************************************************************************
-*
-* Summary: This is the DYNAMIC URL Handler for the HTTP page database resource
-* with the URL:http://<IP_ADDRESS>/toggle. This function toggles the LED and
-* writes the HTTP response.
-*
-* Parameters: 
-* const char* url_path: UNUSED.
-* const char* url_query_string: UNUSED.
-* cy_http_response_stream_t* stream: It is the HTTP stream to which the HTTP
-* message is written.
-* void* arg: UNUSED.
-* cy_http_message_body_t* http_data: UNUSED.
-*
-* Return:
-* int32_t: It contains the status of the dynamic url handler.
-*
-*******************************************************************************/
+cy_rslt_t http_server_init( WhdSTAInterface* wifi );
 int32_t dynamic_url_handler( const char* url_path, const char* url_query_string,
                              cy_http_response_stream_t* stream, void* arg, 
                              cy_http_message_body_t* http_data );
-
-/*******************************************************************************
-* Function Name: powersave_handler
-********************************************************************************
-*
-* Summary: This function configures the power-save mode of the WLAN device.
-* There are three power-save modes supported as defined in the enumeration,
-* wlan_powersave_mode_t.
-*
-* Parameters:
-* WhdSTAInterface* wifi: This is the pointer to the WLAN interface whose
-* power-save mode is to be configured.
-* wlan_powersave_mode_t mode: This enumeration contains information about the
-* power-save mode which is to be configured for the WLAN interface.
-*
-* Return:
-* int32_t: It contains the status of operation of configuring the WLAN
-* interface's power-save mode.
-*
-*******************************************************************************/
 int32_t powersave_handler( WhdSTAInterface* wifi, wlan_powersave_mode_t mode );

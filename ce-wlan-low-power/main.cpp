@@ -1,8 +1,6 @@
 /*******************************************************************************
 * File Name: main.cpp
 *
-* Version: 1.0
-*
 * Description: This application demonstrates low power operation of the Host MCU
 * and the WLAN device. The application connects to a network whose credentials
 * are provided in mbed_app.json. After connecting to the network successfully,
@@ -14,13 +12,8 @@
 * Related Document: README.md
 *                   AN227910 Low-Power System Design with CYW43012 and PSoC 6
 *
-* Supported Kits (Target Names):
-*   CY8CKIT-062S2-43012 PSoC 6 WiFi-BT Pioneer Kit (CY8CKIT_062S2_43012)
-*   CY8CKIT-062-WiFi-BT PSoC 6 WiFi-BT Pioneer Kit (CY8CKIT_062_WIFI_BT)
-*   CY8CPROTO-062-4343W PSoC 6 Wi-Fi BT Prototyping Kit (CY8CPROTO_062_4343W)
-*
 ********************************************************************************
-* (c) 2019, Cypress Semiconductor Corporation. All rights reserved.
+* (c) 2019-20, Cypress Semiconductor Corporation. All rights reserved.
 *******************************************************************************
 * This software, including source code, documentation and related materials
 * (“Software”), is owned by Cypress Semiconductor Corporation or one of its
@@ -101,9 +94,7 @@ mbed_stats_thread_t *thread_stats;
 int main()
 {
     cy_rslt_t                   result = CY_RSLT_SUCCESS;
-    cy_network_interface_t      nw_interface;
     WhdSTAInterface             *wifi = NULL;
-    HTTPServer                  *http_s = NULL;
 
     #if ENABLE_STACK_STATS
     thread_stats = new mbed_stats_thread_t[MAX_THREAD_COUNT];
@@ -114,12 +105,10 @@ int main()
     wifi = new WhdSTAInterface( );
 
     result = wifi_connect_handler( wifi );
-    nw_interface.object = ( void* ) wifi;
-    nw_interface.type   = CY_NW_INF_TYPE_WIFI;
+
     if( CY_RSLT_SUCCESS == result )
     {
-        http_s = new HTTPServer( &nw_interface, HTTP_PORT, MAX_SOCKETS );
-        result = http_server_init( wifi, http_s );
+        result = http_server_init( wifi );
         if( CY_RSLT_SUCCESS == result )
         {
             /* Configures the WLAN interface, pointed by wifi, to desired

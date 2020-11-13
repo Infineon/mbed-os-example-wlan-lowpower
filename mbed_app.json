@@ -1,4 +1,14 @@
 {
+    "config": {
+        "wifi-ssid": {
+            "help": "Wi-Fi SSID",
+            "value": "\"SSID\""
+        },
+        "wifi-password": {
+            "help": "Wi-Fi Password",
+            "value": "\"Password\""
+        }
+    },
     "target_overrides": {
         "*": {
             "platform.stdio-convert-newlines": true,
@@ -8,21 +18,37 @@
             "platform.thread-stats-enabled": true,
             "platform.sys-stats-enabled": true,
             "platform.stdio-baud-rate": 115200,
-            "nsapi.default-wifi-security": "WPA_WPA2",
-            "nsapi.default-wifi-ssid": "\"SSID\"",
-            "nsapi.default-wifi-password": "\"Password\""
+            "target.components_add":["MBED"]
         },
         "CY8CPROTO_062_4343W": {
             "target.components_remove": ["BSP_DESIGN_MODUS"],
-            "target.macros_add":["USR_LED=CYBSP_USER_LED"]
+            "target.components_add":["CUSTOM_DESIGN_MODUS"],
+            "target.macros_add":["USER_LED=CYBSP_USER_LED"]
+        },
+        "CY8CPROTO_062S3_4343W": {
+            "target.components_remove": ["BSP_DESIGN_MODUS"],
+            "target.components_add":["CUSTOM_DESIGN_MODUS"],
+            "target.macros_add":["USER_LED=CYBSP_USER_LED"]
         },
         "CY8CKIT_062S2_43012": {
             "target.components_remove": ["BSP_DESIGN_MODUS"],
-            "target.macros_add":["USR_LED=CYBSP_USER_LED2"]
+            "target.components_add":["CUSTOM_DESIGN_MODUS"],
+            "target.macros_add":["USER_LED=CYBSP_USER_LED2"]
         },
         "CY8CKIT_062_WIFI_BT": {
             "target.components_remove": ["BSP_DESIGN_MODUS"],
-            "target.macros_add":["USR_LED=CYBSP_USER_LED"]
+            "target.components_add":["CUSTOM_DESIGN_MODUS"],
+            "target.macros_add":["USER_LED=CYBSP_USER_LED"]
+        },
+        "CYW9P62S1_43438EVB_01": {
+            "target.components_remove": ["BSP_DESIGN_MODUS"],
+            "target.components_add":["CUSTOM_DESIGN_MODUS"],
+            "target.macros_add":["USER_LED=CYBSP_USER_LED2"]
+        },
+        "CYW9P62S1_43012EVB_01": {
+            "target.components_remove": ["BSP_DESIGN_MODUS"],
+            "target.components_add":["CUSTOM_DESIGN_MODUS"],
+            "target.macros_add":["USER_LED=CYBSP_USER_LED2"]
         }
     }
 }
